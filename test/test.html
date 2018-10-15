@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Address Autocomplete Tests</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=[YOURKEYHERE]&libraries=places"></script>
+    <script src="/google-address-autocomplete.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+    .ga-address-container {
+      padding:1em;
+      border:1px solid #ccc;
+      border-top:0;
+      margin-top:-2px;
+      border-radius:0 0 5px 5px;
+      list-style:none
+    }
+
+    .ga-address-container li {
+      color:#2C6FAE;
+      line-height:1.5em;
+      cursor:pointer;
+      text-decoration:underline
+    }
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Test</h1>
+        <form>
+
+            <input class="form-control" id="test_input" type="search" value="" placeholder="Enter Address" />
+            <ul class="ga-address-container" style="display:none">
+
+            </ul>
+        </form>
+
+        <h5>Places Address Data</h5>
+             <div class="form-group">
+                    <textarea rows="10" class="form-control" id="output"></textarea>
+           </div>
+
+    </div>
+
+    <script>
+        gaAutocomplete.init('#test_input',{
+            updateFields : function(addressbits, full_item) {
+                document.getElementById('output').value = JSON.stringify(full_item)
+            }
+        })
+    </script>
+</body>
+
+</html>
